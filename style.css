@@ -1,0 +1,422 @@
+/* =========================
+   DESIGN TOKENS (LIGHT MODE)
+========================= */
+:root {
+  --bg-main: #f8fafc;
+  --bg-card: #ffffff;
+  --bg-soft: #f1f5f9;
+
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+
+  --accent: #2563eb;
+  --accent-soft: rgba(37, 99, 235, 0.12);
+
+  --border: rgba(0, 0, 0, 0.08);
+  --radius: 14px;
+}
+
+/* =========================
+   DARK MODE OVERRIDES
+========================= */
+body.dark {
+  --bg-main: #020617;
+  --bg-card: #0f172a;
+  --bg-soft: #020617;
+
+  --text-main: #e5e7eb;
+  --text-muted: #94a3b8;
+
+  --border: rgba(255,255,255,0.08);
+}
+
+/* =========================
+   GLOBAL
+========================= */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont;
+  background: var(--bg-main);
+  color: var(--text-main);
+}
+
+/* =========================
+   LAYOUT
+========================= */
+.layout {
+  display: flex;
+}
+
+.main {
+  flex: 1;
+  padding: 28px;
+}
+
+/* =========================
+   SIDEBAR
+========================= */
+.sidebar {
+  width: 240px;
+  height: 100vh;
+  background: var(--bg-card);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-right: 1px solid var(--border);
+}
+
+.sidebar h2 {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.sidebar a {
+  padding: 10px 14px;
+  border-radius: 10px;
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.sidebar a:hover {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.sidebar a.active {
+  background: var(--accent);
+  color: white;
+}
+
+.sidebar-footer {
+  margin-top: auto;
+}
+
+.theme-btn {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--bg-soft);
+  cursor: pointer;
+  color: var(--text-main);
+}
+
+/* =========================
+   HEADINGS
+========================= */
+h1 {
+  font-size: 28px;
+  margin-bottom: 4px;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-bottom: 22px;
+}
+
+/* =========================
+   METRICS
+========================= */
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  margin-bottom: 30px;
+}
+
+.metric-card {
+  background: var(--bg-card);
+  padding: 18px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.04);
+}
+
+.metric-card span {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.metric-card strong {
+  font-size: 28px;
+  display: block;
+  margin-top: 6px;
+}
+
+/* =========================
+   CARDS / TASKS
+========================= */
+.card {
+  background: var(--bg-card);
+  padding: 16px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  margin-bottom: 14px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.04);
+}
+
+.card strong {
+  font-size: 15px;
+}
+
+.card a {
+  display: inline-block;
+  margin-top: 6px;
+  font-size: 13px;
+  color: var(--accent);
+}
+
+/* =========================
+   BUTTONS
+========================= */
+button {
+  background: var(--accent);
+  color: white;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.92;
+}
+
+/* =========================
+   KANBAN
+========================= */
+.kanban {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+
+.column {
+  background: var(--bg-soft);
+  padding: 14px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+}
+
+.column h3 {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+}
+
+.column p {
+  background: var(--bg-card);
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+.filters-panel {
+  background: var(--bg-card);
+  color: var(--text-main);
+  border-radius: 16px;
+  padding: 22px;
+  margin-bottom: 30px;
+  border: 1px solid var(--border);
+  max-width: 420px;
+}
+
+/* layout */
+.filters-panel form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* label + input groups */
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.filter-group label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+/* inputs */
+.filter-group input,
+.filter-group select {
+  background: var(--bg-soft);
+  color: var(--text-main);
+  padding: 11px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  font-size: 14px;
+  outline: none;
+}
+
+/* focus */
+.filter-group input:focus,
+.filter-group select:focus {
+  border-color: var(--accent);
+  background: var(--bg-card);
+}
+
+/* apply button */
+.apply-btn {
+  margin-top: 6px;
+  background: var(--accent);
+  color: #ffffff;
+  border: none;
+  padding: 12px;
+  border-radius: 12px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.apply-btn:hover {
+  opacity: 0.92;
+}
+/* =========================
+   ACTIVITY TIMELINE (CLEAN)
+========================= */
+
+.timeline {
+  margin-top: 24px;
+  max-width: 700px;
+}
+
+/* Date separator */
+.timeline-date {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin: 22px 0 12px;
+}
+
+/* Activity row */
+.timeline-item {
+  display: flex;
+  gap: 14px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  margin-bottom: 10px;
+}
+
+/* Time */
+.timeline-time {
+  font-size: 12px;
+  color: var(--text-muted);
+  min-width: 60px;
+}
+
+/* Message */
+.timeline-text {
+  font-size: 14px;
+  color: var(--text-main);
+  line-height: 1.4;
+}
+/* =========================
+   CREATE TASK – PREMIUM FORM
+========================= */
+
+.create-task-container {
+  max-width: 620px;
+}
+
+.create-task-form {
+  background: var(--bg-card);
+  padding: 26px;
+  border-radius: 18px;
+  border: 1px solid var(--border);
+}
+
+/* groups */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.form-group label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+/* inputs */
+.form-group input,
+.form-group textarea,
+.form-group select {
+  background: var(--bg-soft);
+  color: var(--text-main);
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  font-size: 14px;
+  outline: none;
+}
+
+/* focus */
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  border-color: var(--accent);
+  background: var(--bg-card);
+}
+
+/* rows */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+/* submit button */
+.primary-btn {
+  margin-top: 10px;
+  background: var(--accent);
+  color: #ffffff;
+  border: none;
+  padding: 14px;
+  border-radius: 14px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.primary-btn:hover {
+  opacity: 0.94;
+}
+.heatmap {
+  max-width: 600px;
+  margin-top: 16px;
+}
+
+.heatmap-row {
+  display: grid;
+  grid-template-columns: 100px 1fr 40px;
+  gap: 10px;
+  margin-bottom: 10px;
+  align-items: center;
+}
+
+.heat-bar {
+  background: var(--bg-soft);
+  height: 10px;
+  border-radius: 8px;
+}
+
+.heat-fill {
+  background: var(--accent);
+  height: 100%;
+  border-radius: 8px;
+}

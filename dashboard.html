@@ -1,0 +1,131 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>Team Dashboard</h1>
+
+<!-- METRICS -->
+<div class="metrics">
+  <div class="metric-card">
+    <span>Total Tasks</span>
+    <strong>{{ total_tasks }}</strong>
+  </div>
+  <div class="metric-card">
+    <span>Due Today</span>
+    <strong>{{ due_today }}</strong>
+  </div>
+  <div class="metric-card">
+    <span>Overdue</span>
+    <strong>{{ overdue }}</strong>
+  </div>
+  <div class="metric-card">
+    <span>High Priority</span>
+    <strong>{{ high_priority }}</strong>
+  </div>
+</div>
+
+<!-- WORKLOAD HEATMAP -->
+<h2>Team Workload</h2>
+
+<div class="heatmap">
+  {% for user in workload %}
+    <div class="heatmap-row">
+      <span>{{ user[0] }}</span>
+      <div class="heat-bar">
+        <div class="heat-fill" style="width: {{ user[1] * 10 }}%"></div>
+      </div>
+      <span>{{ user[1] }}</span>
+    </div>
+  {% endfor %}
+</div>
+
+<!-- FILTER PANEL -->
+<div class="card">
+  <div class="filters-panel">
+    <form method="GET" action="/">
+
+      <div class="filter-group">
+        <label>Search Task</label>
+        <input type="text" name="q" placeholder="Search task">
+      </div>
+
+      <div class="filter-group">
+        <label>Member</label>
+        <select name="member">
+          <option value="">All Members</option>
+          {% for u in users %}
+            <option value="{{ u[0] }}">{{ u[1] }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <label>Status</label>
+        <select name="status">
+          <option value="">All Status</option>
+          <option>Pending</option>
+          <option>In Progress</option>
+          <option>Blocked</option>
+          <option>Completed</option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <label>Priority</label>
+        <select name="priority">
+          <option value="">All Priority</option>
+          <option>High</option>
+          <option>Medium</option>
+          <option>Low</option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <label>Category</label>
+        <select name="category">
+          <option value="">All Category</option>
+          <option>Bug</option>
+          <option>Feature</option>
+          <option>Ops</option>
+          <option>Urgent</option>
+          <option>Low Priority</option>
+        </select>
+      </div>
+
+      <button type="submit" class="apply-btn">Apply Filters</button>
+
+    </form>
+  </div>
+</div>
+
+<!-- TASK LIST -->
+<div class="card">
+  {% if tasks|length == 0 %}
+    <p class="empty">No tasks found.</p>
+  {% else %}
+    <ul>
+      {% for task in tasks %}
+        <li>
+          <strong>{{ task[1] }}</strong>
+          | {{ task[2] }}
+          | {{ task[3] }}
+          | <span class="status-{{ task[4]|replace(' ', '') }}">{{ task[4] }}</span>
+          | Due {{ task[5] }}
+          | {{ task[6] }}
+
+          <br>
+
+          {% if task[4] == "Pending" %}
+            <a href="/update_status/{{ task[0] }}/In Progress">Start</a>
+          {% elif task[4] == "In Progress" %}
+            <a href="/update_status/{{ task[0] }}/Blocked">Block</a>
+            <a href="/update_status/{{ task[0] }}/Completed">Complete</a>
+          {% elif task[4] == "Blocked" %}
+            <a href="/update_status/{{ task[0] }}/In Progress">Resume</a>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+</div>
+
+{% endblock %}

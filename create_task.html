@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>Create Task</h1>
+<p class="subtitle">Add a new task with complete details</p>
+
+<div class="create-task-container">
+
+  <form method="POST" enctype="multipart/form-data" class="create-task-form">
+
+    <div class="form-group">
+      <label>Title</label>
+      <input type="text" name="title" placeholder="Task title" required>
+    </div>
+
+    <div class="form-group">
+      <label>Description</label>
+      <textarea name="description" rows="3" placeholder="Task description"></textarea>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Category</label>
+        <select name="category">
+          <option>Bug</option>
+          <option>Feature</option>
+          <option>Ops</option>
+          <option>Urgent</option>
+          <option>Low Priority</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Priority</label>
+        <select name="priority">
+          <option>High</option>
+          <option>Medium</option>
+          <option>Low</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Status</label>
+        <select name="status">
+          <option>Pending</option>
+          <option>In Progress</option>
+          <option>Blocked</option>
+          <option>Completed</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Assign To</label>
+        <select name="assignee">
+          {% for u in users %}
+            <option value="{{ u[0] }}">{{ u[1] }}</option>
+          {% endfor %}
+        </select>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Due Date</label>
+        <input type="date" name="due_date">
+      </div>
+
+      <div class="form-group">
+        <label>Dependency</label>
+        <select name="dependency">
+        <option value="">No Dependency</option>
+        {% for t in tasks %}
+        <option value="{{ t[0] }}">{{ t[1] }}</option>
+        {% endfor %}
+        </select>
+
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Attachment (optional)</label>
+      <input type="file" name="attachment">
+    </div>
+
+    <button type="submit" class="primary-btn">Create Task</button>
+
+  </form>
+
+</div>
+
+{% endblock %}

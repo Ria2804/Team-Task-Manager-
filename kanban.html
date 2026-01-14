@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>Kanban Board</h1>
+
+<div class="kanban">
+  <div class="column">
+    <h3>Pending</h3>
+    {% for t in pending %}
+      <p>{{ t[0] }}</p>
+    {% endfor %}
+  </div>
+
+  <div class="column">
+    <h3>In Progress</h3>
+    {% for t in progress %}
+      <p>{{ t[0] }}</p>
+    {% endfor %}
+  </div>
+
+  <div class="column">
+    <h3>Completed</h3>
+    {% for t in completed %}
+      <p>{{ t[0] }}</p>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock %}

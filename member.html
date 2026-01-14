@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>Member Profile</h1>
+
+<div class="card">
+  <strong>Name:</strong> {{ user[0] }} <br>
+  <strong>Role:</strong> {{ user[1] }} <br>
+  <strong>Completion Rate:</strong> {{ completion_rate }}%
+</div>
+
+<div class="card">
+  <strong>Total Tasks:</strong> {{ total }} <br>
+  <strong>Completed:</strong> {{ completed }} <br>
+  <strong>Pending:</strong> {{ pending }} <br>
+  <strong>Overdue:</strong> {{ overdue }}
+</div>
+
+<div class="card">
+<h2>Assigned Tasks</h2>
+<ul>
+  {% for t in tasks %}
+    <li>{{ t[0] }} | {{ t[1] }} | Due: {{ t[2] }}</li>
+  {% endfor %}
+</ul>
+</div>
+
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>Activity Timeline</h1>
+<p class="subtitle">Track all important actions across the system</p>
+
+<div class="timeline">
+
+  {% set current_date = None %}
+
+  {% for log in logs %}
+    {% set log_date = log[1][:10] %}
+    {% set log_time = log[1][11:16] %}
+
+    {% if log_date != current_date %}
+      <div class="timeline-date">
+        {{ log_date }}
+      </div>
+      {% set current_date = log_date %}
+    {% endif %}
+
+    <div class="timeline-item">
+      <span class="timeline-time">{{ log_time }}</span>
+      <span class="timeline-text">{{ log[0] }}</span>
+    </div>
+
+  {% endfor %}
+
+</div>
+
+{% endblock %}

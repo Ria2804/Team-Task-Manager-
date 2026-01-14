@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Team Task Manager</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
+</head>
+<body>
+
+<div class="layout">
+
+  <aside class="sidebar">
+    <h2>Tasks</h2>
+
+    <a href="/" class="{% if request.path == '/' %}active{% endif %}">Dashboard</a>
+    <a href="/create" class="{% if request.path == '/create' %}active{% endif %}">Create Task</a>
+    <a href="/kanban" class="{% if request.path == '/kanban' %}active{% endif %}">Kanban</a>
+    <a href="/activity" class="{% if request.path == '/activity' %}active{% endif %}">Activity</a>
+
+    <div class="sidebar-footer">
+      <button onclick="toggleTheme()" class="theme-btn"> Theme</button>
+    </div>
+  </aside>
+
+  <main class="main">
+    {% block content %}{% endblock %}
+  </main>
+
+</div>
+
+</body>
+</html>
